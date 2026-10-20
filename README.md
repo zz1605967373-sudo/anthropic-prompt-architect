@@ -1,31 +1,34 @@
-# 🏛️ Anthropic Prompt Architect (Metaprompt & Audit Engine)
+# 🏛️ Anthropic Prompt Architect (Metaprompt, Audit & Caching Engine)
 
-> 基于 Anthropic 官方体系（**Metaprompt** + **Prompt Audit** + **Prompt Caching** + **Skill Creator**）构建的工业级 Prompt 架构与工程化 Skill。
+> 基于 Anthropic 官方体系（**Metaprompt** + **Prompt Improver** + **Prompt Audit** + **Prompt Caching** + **Extended Thinking**）构建的工业级 Prompt 架构与工程化 Skill。
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Official Anthropic Compliant](https://img.shields.io/badge/Anthropic-Prompt_Standard-orange.svg)](https://github.com/anthropics/skills)
+[![Cache Aligned](https://img.shields.io/badge/Prompt_Caching-Aligned_Topology-green.svg)](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching)
 
 ---
 
 ## 📖 项目简介
 
 在大模型提示词工程中，简单的“八股文模板”往往会导致过度工程化（Over-engineering）与输出僵化。
-本项目严格汲取 Anthropic 官方在开源社区中的四大核心资产：
-1. **[Metaprompt](https://github.com/anthropics/claude-cookbooks/blob/main/misc/metaprompt.ipynb)**：解决“空白页困境”，通过自适应编译器将口语任务编译为生产级 Prompt；
-2. **[Prompt Audit](https://github.com/anthropics/skills/blob/main/skills/claude-api/shared/prompt-audit.md)**：落实 *"Every token earns its place"* 准则，剔除情绪胁迫、微观死板脚本与过时脚手架；
-3. **[Prompt Caching](https://github.com/anthropics/skills/blob/main/skills/claude-api/shared/prompt-caching.md)**：三层缓存断点物理架构，实现最高 90% 降本与 80% 降延迟；
-4. **[Skill Creator](https://github.com/anthropics/skills/tree/main/skills/skill-creator)**：标准 Agent Skill 协议与端到端自动化评测体系。
+本项目为 Claude 3.5 / 3.7 / Opus / Sonnet 全系列量身打造，融合 Anthropic 官方在开源社区中的核心工程方法论：
+
+1. **预编译分流（Pre-Compilation Triage）**：按 *Light* / *Medium* / *Heavy* 三级自适应匹配复杂度，杜绝小任务杀鸡用牛刀；
+2. **缓存对齐拓扑（Cache-Aligned Topology）**：静态规则与长文本前置，动态运行时变量置底，实现 **100% 提示词物理缓存命中（降本 90%）**；
+3. **原生 Extended Thinking 与 <scratchpad> 解耦**：自适应识别是否开启 API 级原生推理，避免重复冗余思考；
+4. **Prompt Audit 剪枝诊断**：识别并剔除情绪胁迫、微观死板脚本与缓存破坏行为；
+5. **完整 API 集成建议**：提供 System/User 划分、Assistant Prefill 预填建议与温度推荐。
 
 ---
 
-## ⚡ 四大工作模式
+## ⚡ 四大核心工作模式
 
-| 模式 | 指令 | 作用与核心逻辑 |
+| 模式 | 触发指令 | 作用与核心机制 |
 | :--- | :--- | :--- |
-| **模式 1** | /generate | **从零构建**：根据口语化需求，自适应生成带有 XML 标签包裹、变量注入与 Scratchpad 推演的高级 Prompt。 |
-| **模式 2** | /audit | **审计与重构**：扫描存量 Prompt 中的空泛词、陈旧模式、死板脚本，输出诊断报告与干净的重构 Diff。 |
-| **模式 3** | /cache | **缓存分层优化**：将长文本 Prompt 拆分为静态系统层、参考资料层与动态入参层，精准打上缓存断点。 |
-| **模式 4** | /eval | **评测集生成**：自动合成标准用例、边界用例与防注入对抗用例，验证 Prompt 鲁棒性。 |
+| **模式 1** | /generate | **从零构建**：自适应判定复杂度，编译带有 XML 标签包裹、长上下文置顶与推演机制的高鲁棒性 Prompt。 |
+| **模式 2** | /audit | **过时审计与重构**：扫描存量 Prompt 中的空泛词、陈旧脚本、缓存破坏行为，输出诊断报告与干净重构 Diff。 |
+| **模式 3** | /cache | **缓存架构物理分层**：将 Prompt 严格划分为静态系统层、参考资料层与动态入参层，精准打上缓存断点。 |
+| **模式 4** | /eval | **评测集自动合成**：自动生成标准黄金用例、边界降级用例与防注入对抗用例，全面验证鲁棒性。 |
 
 ---
 
@@ -40,6 +43,6 @@ mkdir -p .agents/skills/anthropic-prompt-architect
 cp SKILL.md .agents/skills/anthropic-prompt-architect/
 `
 
-### 文档导航
+### 目录与文档
 * 核心技能定义：[SKILL.md](./SKILL.md)
 * 架构设计蓝本：[lueprint.md](./blueprint.md)
